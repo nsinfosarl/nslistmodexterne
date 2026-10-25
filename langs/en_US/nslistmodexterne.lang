@@ -1,0 +1,39 @@
+# Translation file
+
+#
+# Generic
+#
+
+# Module label 'ModuleNslistmodexterneName'
+ModuleNslistmodexterneName = List of external modules
+# Module description 'ModuleNslistmodexterneDesc'
+
+#
+# Admin page
+#
+NslistmodexterneSetup = List of external modules - Setup
+Settings = Settings
+
+#
+# About page
+#
+About = About
+NslistmodexterneChangeLog = ChangeLog
+NslistmodexterneAbout = List of external modules - About
+
+#
+# List of the external modules
+#
+ModuleNslistmodexterneDesc = JSON file of the external modules of the instance, downloadable from the module setup
+NslistmodexterneDescription = JSON file of the external modules of the instance, downloadable from the module setup
+NslistmodexterneJsonFile = JSON file of the external modules
+NslistmodexterneGenerate = Generate the JSON file
+NslistmodexterneFileGenerated = JSON file generated: %s external modules
+NslistmodexterneNoFile = Not generated yet
+NslistmodexterneSuiviProdCopy = Copy for the module Site tracking
+NslistmodexterneHideModule = Hide the module in the list of the modules of Dolibarr
+NslistmodexterneHideModuleHelp = The module stays enabled (JSON file, scheduled job). Once hidden, its setup is still available at the address:
+DateLastGeneration = Date of last generation
+NslistmodexterneCronGenerate = List of external modules: generation of the JSON file
+Permission17279201 = Read the list of the external modules
+Permission17279202 = Generate the JSON file of the external modules

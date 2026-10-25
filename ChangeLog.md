@@ -1,0 +1,10 @@
+# CHANGELOG NSLISTMODEXTERNE FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+
+## 23.0.0 - 25/10/2026
+- Version initiale (alignement sur les modules NS INFO : famille NS INFO, version dans VERSION)
+- Fichier JSON des modules externes de l'instance documents/nslistmodexterne/modules_externes.json (nom, libellé, description, version, éditeur, numéro, famille, état actif / inactif (enabled, status), date d'activation, dossier, compatibilité, dépendances, réglages, fonctionnalités), à télécharger pour être exploité hors de l'instance (classe ListModExterne : getModules(), readJsonFile(), pour nos développements) ; génération et téléchargement depuis la page de réglages du module, tâche planifiée quotidienne ; copie écrite en même temps dans documents/nssuiviprod/ si le module Suivi des sites (nssuiviprod) est activé ; pas de page ni de menu ; droits Consulter / Générer ; numéro 172792
+- Module indépendant du framework NSINFO (plus de dépendance au module nsinfo) : compatible Dolibarr 14 à 24 et PHP 7.4 à 8.3 ; fonctions manquantes dans les anciennes versions de Dolibarr intégrées au module (lib/nslistmodexterne_compat.lib.php : dolChmod(), contrôle des droits sans User::hasRight()) ; onglets ChangeLog et À propos propres au module
+- Le module nslistmodexterne lui-même n'est pas recensé dans le fichier JSON
+- Réglages : icônes en couleur des titres « Fichier JSON des modules externes » et « Paramètres » et du lien de téléchargement, affichées aussi sous Dolibarr 14 (la syntaxe fa-icône_fas_#couleur d'img_picto() n'y existe pas)
+- Option des réglages « Masquer le module dans la liste des modules de Dolibarr » (constante NSLISTMODEXTERNE_HIDE_MODULE, propriété hidden du descripteur) : le module reste actif, ses réglages restent accessibles par leur adresse, affichée sous l'option
+- Logo : boule NSINFO, badge cubes, texte « Modules externes »
