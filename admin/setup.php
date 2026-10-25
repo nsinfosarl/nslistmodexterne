@@ -93,7 +93,7 @@ if ($action == 'sethidemodule') {
 // Download the JSON file
 if ($action == 'download' && is_readable($jsonfile)) {
 	top_httphead('application/json');
-	header('Content-Disposition: attachment; filename="'.ListModExterne::FILENAME.'"');
+	header('Content-Disposition: attachment; filename="'.ListModExterne::getFileName().'"');
 	header('Content-Length: '.dol_filesize($jsonfile));
 	readfile($jsonfile);
 	exit;
@@ -127,7 +127,7 @@ print '<div class="div-table-responsive-no-min">';
 print '<table class="noborder centpercent">';
 print '<tr class="oddeven"><td class="titlefield">'.$langs->trans('File').'</td><td class="wordbreak">';
 if ($filedate) {
-	print '<a href="'.$_SERVER['PHP_SELF'].'?action=download&token='.newToken().'">'.'<span class="fas fa-download pictofixedwidth" style="color: #22A7D8;"></span>'.dol_escape_htmltag(ListModExterne::FILENAME).'</a> ';
+	print '<a href="'.$_SERVER['PHP_SELF'].'?action=download&token='.newToken().'">'.'<span class="fas fa-download pictofixedwidth" style="color: #22A7D8;"></span>'.dol_escape_htmltag(ListModExterne::getFileName()).'</a> ';
 }
 print '<span class="opacitymedium">'.dol_escape_htmltag($jsonfile).'</span></td></tr>';
 $suiviprodfile = $listmod->getSuiviProdFilePath();

@@ -42,7 +42,8 @@ class ListModExterne
 	const FORMAT_VERSION = 2;
 
 	/**
-	 * Name of the JSON file in the documents directory of the module
+	 * Former name of the JSON file (before it was named after the URL of the instance), deleted at the next generation;
+	 * also the name used when the URL of the instance is unknown
 	 */
 	const FILENAME = 'modules_externes.json';
 
@@ -94,7 +95,7 @@ class ListModExterne
 			$dir = DOL_DATA_ROOT.($conf->entity > 1 ? '/'.((int) $conf->entity) : '').'/nslistmodexterne';
 		}
 
-		return $dir.'/'.self::FILENAME;
+		return $dir.'/'.self::getFileName();
 	}
 
 	/**
@@ -117,7 +118,7 @@ class ListModExterne
 			$dir = DOL_DATA_ROOT.($conf->entity > 1 ? '/'.((int) $conf->entity) : '').'/nssuiviprod';
 		}
 
-		return $dir.'/'.self::FILENAME;
+		return $dir.'/'.self::getFileName();
 	}
 
 	/**
@@ -274,6 +275,24 @@ class ListModExterne
 	}
 
 	/**
+	 * Return the name of the JSON file: the address of the instance (URL of Dolibarr)
+	 *
+	 * @return	string	Name of the file, with the extension .json
+	 */
+	public static function getFileName()
+	{
+		global $dolibarr_main_url_root;
+
+		// Address of the instance without the protocol, "/" and ":" replaced (example: erp.example.com_dolibarr.json)
+		$name = dol_strtolower(trim((string) $dolibarr_main_url_root));
+		$name = preg_replace('/^[a-z]+:\/\//', '', $name);
+		$name = trim(str_replace(array('/', ':', '\\'), '_', rtrim($name, '/')), '_');
+		$name = dol_sanitizeFileName($name);
+
+		return ($name !== '' ? $name.'.json' : self::FILENAME);
+	}
+
+	/**
 	 * Generate the JSON file. Also used by the scheduled job (returns 0 if OK).
 	 *
 	 * @return	int		0 if OK, <0 if KO (error in $this->error)
@@ -300,6 +319,7 @@ class ListModExterne
 		}
 		dolChmod($path);
 		$this->output = $data['count'].' external modules written into '.$path;
+		$this->deleteFormerFile($path);
 
 		// Copy in the documents directory of the module nssuiviprod (Suivi des sites), if enabled
 		$copy = $this->getSuiviProdFilePath();
@@ -311,9 +331,24 @@ class ListModExterne
 			}
 			dolChmod($copy);
 			$this->output .= ' and '.$copy;
+			$this->deleteFormerFile($copy);
 		}
 
 		return 0;
+	}
+
+	/**
+	 * Delete the file with the former name (modules_externes.json) in the directory of a generated file
+	 *
+	 * @param	string	$path	Full path of the generated file
+	 * @return	void
+	 */
+	private function deleteFormerFile($path)
+	{
+		$former = dirname($path).'/'.self::FILENAME;
+		if ($former != $path && is_file($former)) {
+			dol_delete_file($former, 0, 1);
+		}
 	}
 
 	/**

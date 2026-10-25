@@ -11,7 +11,7 @@
 
 ### Version
 
-- Version : 23.0.0
+- Version : 23.0.1
 - PHP : 7.4 - 8.3
 - Compatibilité : Dolibarr 14.0.0 - 24.0.x
 
@@ -27,7 +27,7 @@
 
 Nslistmodexterne : fichier JSON des modules externes de l'instance, sans aucune modification du Core.
 
-- Fichier `documents/nslistmodexterne/modules_externes.json` : pour chaque module externe, nom, libellé, description, version, éditeur, numéro, famille, état actif ou inactif (`enabled` : true / false, `status` : enabled / disabled), date d'activation, dossier, compatibilité, dépendances, réglages et fonctionnalités
+- Fichier JSON nommé d'après l'adresse de l'instance (`documents/nslistmodexterne/<adresse>.json`, exemple `erp.client.fr.json`) : pour chaque module externe, nom, libellé, description, version, éditeur, numéro, famille, état actif ou inactif (`enabled` : true / false, `status` : enabled / disabled), date d'activation, dossier, compatibilité, dépendances, réglages et fonctionnalités
 - Le module nslistmodexterne lui-même n'est pas recensé dans le fichier
 - Génération et téléchargement depuis la page de réglages du module ; tâche planifiée quotidienne
 - Copie écrite en même temps dans `documents/nssuiviprod/` si le module Suivi des sites (`nssuiviprod`) est activé
