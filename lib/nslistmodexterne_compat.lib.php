@@ -41,6 +41,21 @@ if (!function_exists('dolChmod')) {
 	}
 }
 
+if (!function_exists('isModEnabled')) {
+	/**
+	 * Test if a module is enabled (Dolibarr 16)
+	 *
+	 * @param	string	$module		Module name (lowercase)
+	 * @return	bool
+	 */
+	function isModEnabled($module)
+	{
+		global $conf;
+
+		return !empty($conf->$module->enabled);
+	}
+}
+
 /**
  * Check a permission of the user (User::hasRight() exists only since Dolibarr 16)
  *

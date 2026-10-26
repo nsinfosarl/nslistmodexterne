@@ -1,5 +1,8 @@
 # CHANGELOG NSLISTMODEXTERNE FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.0.2 - 26/10/2026
+- Correction de la compatibilité Dolibarr 14 et 15 : isModEnabled() (Dolibarr 16) remplacée par un contrôle de repli dans le descripteur et ajoutée à lib/nslistmodexterne_compat.lib.php ; l'activation ne plante plus
+
 ## 23.0.1 - 25/10/2026
 - Fichier JSON nommé d'après l'adresse de l'instance Dolibarr (exemple : erp.client.fr.json, « / » et « : » remplacés par « _ »), aussi pour le téléchargement et la copie pour le module Suivi des sites ; l'ancien fichier modules_externes.json est supprimé à la génération suivante
 

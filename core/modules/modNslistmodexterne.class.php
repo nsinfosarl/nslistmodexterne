@@ -85,7 +85,7 @@ class modNslistmodexterne extends DolibarrModules
 
 		$this->const = array();
 
-		if (!isModEnabled("nslistmodexterne")) {
+		if (!(function_exists('isModEnabled') ? isModEnabled("nslistmodexterne") : !empty($conf->nslistmodexterne->enabled))) {
 			$conf->nslistmodexterne = new stdClass();
 			$conf->nslistmodexterne->enabled = 0;
 		}
@@ -116,7 +116,7 @@ class modNslistmodexterne extends DolibarrModules
 				'frequency' => 1,
 				'unitfrequency' => 86400,
 				'status' => 1,
-				'test' => 'isModEnabled("nslistmodexterne")',
+				'test' => function_exists('isModEnabled') ? 'isModEnabled("nslistmodexterne")' : '!empty($conf->nslistmodexterne->enabled)',
 				'priority' => 50,
 			),
 		);
